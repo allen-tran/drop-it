@@ -45,3 +45,6 @@ amplifytools.xcconfig
 
 # config file
 config.json
+
+# sql queries
+/sql
