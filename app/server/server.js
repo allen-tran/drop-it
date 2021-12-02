@@ -1,48 +1,48 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
 const app = express();
+var mysql = require("mysql");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+const { Config } = require("../src/config.json");
 
-var mysql = require("mysql");
-
-// create a connection variable with the required details
-var con = mysql.createConnection({
-  host: "", // ip address of server running mysql
-  user: "admin", // user name to your mysql database
-  password: "", // corresponding password
-  database: "", // use the specified database
+// // create a connection variable with the required details
+var db = mysql.createConnection({
+  host: Config.HOST, // ip address of server running mysql
+  user: Config.USER, // user name to your mysql database
+  password: Config.PASSWORD, // corresponding password
+  port: Config.PORT, // db port
+  database: Config.DATABASE, // use the specified database
 });
 
-// make to connection to the database.
-con.connect(function (err) {
+// // make to connection to the database.
+db.connect(function (err) {
   if (err) throw err;
   // if connection is successful
   console.log("connection successful");
 });
 
 app.get("/", (req, res) => {
-  res.json("OK");
+  res.send("OK");
 });
 
-app.post("/", (req, res) => {
-  var { name, rollno } = req.body;
-  var records = [[req.body.name, req.body.rollno]];
-  if (records[0][0] != null) {
-    con.query(
-      "INSERT into student (name,rollno) VALUES ?",
-      [records],
-      function (err, res, fields) {
-        if (err) throw err;
+// app.post("/", (req, res) => {
+//   var { name, rollno } = req.body;
+//   var records = [[req.body.name, req.body.rollno]];
+//   if (records[0][0] != null) {
+//     con.query(
+//       "INSERT into student (name,rollno) VALUES ?",
+//       [records],
+//       function (err, res, fields) {
+//         if (err) throw err;
 
-        console.log(res);
-      }
-    );
-  }
-  res.json("Form recieved");
-});
+//         console.log(res);
+//       }
+//     );
+//   }
+//   res.json("Form recieved");
+// });
 
 app.listen(3001, () => {
   console.log("Port 3001");
