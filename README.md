@@ -3,8 +3,8 @@ This application is a mock Google Drive that enables the client to create an acc
 
 ## Tools Used
 - Authentification: AWS Cognito + AWS Amplified
-- Front End: React.js
+- Frontend: React.js
 - Routing: Express.js, CORS, Body Parser
-- Backend: AWS S3, AWS RDS (MySql)
+- Backend: AWS S3, AWS RDS (MySQL)
 
 ## Getting Started
