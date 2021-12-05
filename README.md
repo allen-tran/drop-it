@@ -26,9 +26,11 @@ $ npm i
 
 5. Run the Server and Client
 ```
+$ cd app
 $ npm start
 ```
 ```
+$ cd app/server
 $ node server.js
 ```
 
