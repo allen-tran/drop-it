@@ -43,7 +43,7 @@ $ node server.js
 
 *after inputting valid details, the client will be given a unique authentification code to confirm their email address*
 
-2. Sign in View
+2. Sign In View
 <img width="1512" alt="Screen Shot 2021-12-05 at 8 31 00 AM" src="https://user-images.githubusercontent.com/63386979/144754961-577e073b-56ac-4bb0-a679-6b7f722c4866.png">
 
 *after successful account creation, users will then be asked to sign in - they have been added to the pool in AWS Cognito*
