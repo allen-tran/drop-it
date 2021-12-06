@@ -56,7 +56,7 @@ $ node server.js
 
 
 4. Drop File View
-<img width="1512" alt="Screen Shot 2021-12-05 at 8 41 59 AM" src="https://user-images.githubusercontent.com/63386979/144755304-36cfef6e-c56a-428d-890f-2a74c322ac1e.png">
+![image](https://user-images.githubusercontent.com/63386979/144887109-1edecde8-8455-4825-b68c-c74e3650e1cd.png)
 
 -   *upon heading over to `drop file` users will be greeted with this page where they can either drag and drop their files or manually click `Choose File` where they will be able to select their file from their local file manager*
 -   *note: `what should we call this?` and `what is this?` is completely **optional***
