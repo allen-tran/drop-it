@@ -13,17 +13,25 @@ function UploadView(appProps) {
   const [userId, setUserId] = useState();
 
   const fields = [
-    <Input placeholder="what should we call this?"
-      onChange={(e) => setTitle(e.target.value)} />,
+    <Input
+      placeholder="what should we call this?"
+      onChange={(e) => setTitle(e.target.value)}
+    />,
     <Input type="file" onChange={onFileChange} />,
     <Input
       placeholder="what is this?"
-      type="textarea" onChange={
-        (e) => setDescription(e.target.value)} />,
+      type="textarea"
+      onChange={(e) => setDescription(e.target.value)}
+    />,
     <Button
-    style={fileValid ? {backgroundColor: '#c0d6df'}: {backgroundColor: 'danger'}}
+      style={
+        fileValid
+          ? { backgroundColor: "#c0d6df" }
+          : { backgroundColor: "danger" }
+      }
       disabled={!isUploadAllowed()}
-      onClick={async () => await uploadFile(file)}>
+      onClick={async () => await uploadFile(file)}
+    >
       {fileValid ? "drop" : "file too big! (>10MB)."}
     </Button>,
   ];
@@ -41,11 +49,11 @@ function UploadView(appProps) {
     console.log("Yo!");
     let fileId = await uploadObject(file);
     await addFileToTable({
-      userId: userId,
-      fileId: fileId.key,
+      file_user_id: userId,
+      file_id: fileId.key,
       title: title ? title : file.name,
       size: size,
-      description: description
+      file_description: description,
     });
     alert("file sucessfully uploaded!");
   }
@@ -69,13 +77,23 @@ function UploadView(appProps) {
 
   return (
     <Container>
+      <p>drop your files here!</p>
+
       {fields.map((x, index) => {
         return (
           <div>
-          <Row key={index} style={{ width: "auto", padding: 10, justifyContent:"right", display:"flex", alignItems:"right"}}>
-            {x}
-          </Row>
-
+            <Row
+              key={index}
+              style={{
+                width: "auto",
+                padding: 10,
+                justifyContent: "right",
+                display: "flex",
+                alignItems: "right",
+              }}
+            >
+              {x}
+            </Row>
           </div>
         );
       })}

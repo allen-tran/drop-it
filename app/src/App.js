@@ -6,23 +6,21 @@ import { withAuthenticator } from "@aws-amplify/ui-react";
 import Navigation from "./components/Navbar";
 import UploadView from "./components/UploadView";
 // import ViewFilesView from "./components/ViewFilesView";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 Amplify.configure(awsconfig);
 
 function App() {
-
-
   return (
     <div className="App">
       <Navigation />
 
       <div className="body-container">
-      <BrowserRouter>
-        <Routes>
-        <Route path="/drop" element={<UploadView />}/>
-        {/* <Route path= "/" element={<ViewFilesView/>}/> */}
-        </Routes>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/drop" element={<UploadView />} />
+            {/* <Route path= "/" element={<ViewFilesView/>}/> */}
+          </Routes>
+        </BrowserRouter>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ export async function deleteObject(key) {
 export async function uploadObject(file) {
   const filename = `${Date.now()}-${file.name}`;
   return await Storage.put(filename, file, {
-    contentType: file.type
+    contentType: file.type,
   });
 }
 

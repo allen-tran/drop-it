@@ -1,4 +1,4 @@
-import {Config} from "../config/config.json";
+import { Config } from "../config/config.json";
 
 export async function addUserToRDS(newUser) {
   fetch(
@@ -12,10 +12,7 @@ export async function addUserToRDS(newUser) {
 
 export async function checkIfUserExists(userId) {
   let exists = false;
-  await fetch(
-    `${Config.DB_QUERY}` +
-      `/users?id=${userId}`
-  )
+  await fetch(`${Config.DB_QUERY}/users?id=${userId}`)
     .then((response) => response.json())
     .then((response) => {
       exists = response.exists;
@@ -28,10 +25,7 @@ export async function checkIfUserExists(userId) {
 
 export async function checkIfUserIsAdmin(userId) {
   let isAdmin = false;
-  await fetch(
-    `${Config.DB_QUERY}` +
-      `/users?id=${userId}`
-  )
+  await fetch(`${Config.DB_QUERY}/users?id=${userId}`)
     .then((response) => response.json())
     .then((response) => {
       isAdmin = response.isAdmin;
@@ -45,8 +39,7 @@ export async function checkIfUserIsAdmin(userId) {
 export async function addFileToTable(fileData) {
   const { userId, fileId, title, description, size } = fileData;
   fetch(
-    `${Config.DB_QUERY}` +
-      `/files/add?userId=${userId}&fileId=${fileId}&title=${title}` +
+    `${Config.DB_QUERY}/files/add?userId=${userId}&fileId=${fileId}&title=${title}` +
       `&description=${description}&size=${size}`
   ).catch((err) => {
     console.log(err);
@@ -55,10 +48,7 @@ export async function addFileToTable(fileData) {
 
 export async function getUserFiles(userId) {
   let objs = [];
-  await fetch(
-    `${Config.DB_QUERY}` +
-      `/files?id=${userId}`
-  )
+  await fetch(`${Config.DB_QUERY}/files?id=${userId}`)
     .then((response) => response.json())
     .then((response) => {
       objs = response.data;
@@ -71,10 +61,7 @@ export async function getUserFiles(userId) {
 
 export async function deleteFile(userId, entryId) {
   let objs = [];
-  await fetch(
-    `${Config.DB_QUERY}` +
-      `/files/remove?id=${entryId}&userId=${userId}`
-  )
+  await fetch(`${Config.DB_QUERY}/files/remove?id=${entryId}&userId=${userId}`)
     .then((response) => response.json())
     .then((response) => {
       objs = response.data;
