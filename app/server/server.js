@@ -169,9 +169,8 @@ app.get("/files/update", (req, res) => {
 });
 
 app.get("/files/add", (req, res) => {
-  let today = new Date();
-  let time =
-    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  var time = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   pool.getConnection(function (err, con) {
     const { userId, fileId, title, description, size } = req.query;
     con.query(

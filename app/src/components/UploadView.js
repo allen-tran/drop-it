@@ -46,7 +46,6 @@ function UploadView(appProps) {
   }
 
   async function uploadFile() {
-    console.log("Yo!");
     let fileId = await uploadObject(file);
     await addFileToTable({
       file_user_id: userId,
