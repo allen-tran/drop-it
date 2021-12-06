@@ -37,10 +37,10 @@ export async function checkIfUserIsAdmin(userId) {
 }
 
 export async function addFileToTable(fileData) {
-  const { userId, fileId, title, description, size } = fileData;
+  const { file_user_id, file_id, title, file_description, size } = fileData;
   fetch(
-    `${Config.DB_QUERY}/files/add?userId=${userId}&fileId=${fileId}&title=${title}` +
-      `&description=${description}&size=${size}`
+    `${Config.DB_QUERY}/files/add?userId=${file_user_id}&fileId=${file_id}&title=${title}` +
+      `&description=${file_description}&size=${size}`
   ).catch((err) => {
     console.log(err);
   });
