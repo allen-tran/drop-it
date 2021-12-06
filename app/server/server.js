@@ -5,19 +5,20 @@ const app = express();
 var mysql = require("mysql");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-const { Config } = require("../src/config.json");
+const { Config } = require("../src/config/config.json");
 
 // // create a connection variable with the required details
-var db = mysql.createConnection({
+var pool = mysql.createPool({
   host: Config.HOST, // ip address of server running mysql
   user: Config.USER, // user name to your mysql database
   password: Config.PASSWORD, // corresponding password
   port: Config.PORT, // db port
+  region: "us-west-1",
   database: Config.DATABASE, // use the specified database
 });
 
-// // make to connection to the database.
-db.connect(function (err) {
+// // make to connection to the database
+pool.getConnection(function (err) {
   if (err) throw err;
   // if connection is successful
   console.log("connection successful");

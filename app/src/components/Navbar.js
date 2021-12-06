@@ -1,88 +1,38 @@
-import React, { useState, useEffect } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  Container,
-  Dropdown,
-  DropdownItem,
-  DropdownToggle,
-  DropdownMenu,
-} from "reactstrap";
-// import { isAdmin } from "../backend/AuthFunctions";
-
-function Navigation(props) {
-  const [isOpen, toggleOpen] = useState(false);
-  //   const [adminStatus, setAdminStatus] = useState(false);
-  const [dropdownOpen, toggleDropdownOpen] = useState(false);
+import React from "react";
+import * as ReactStrap from "reactstrap";
+import "./Navbar.css";
+import { CustomSignOut } from "./CustomSignOut";
+const NavBar = (props) => {
   const navLinks = [
-    { name: "Upload File", link: "upload" },
-    { name: "View Files", link: "/" },
+    { name: "drop file", link: "drop" },
+    { name: "view files", link: "/" },
   ];
-
-  useEffect(() => {
-    getAdminStatus();
-  });
-
-  async function getAdminStatus() {
-    if (!props.authed) return;
-    // setAdminStatus(await isAdmin());
-  }
-
-  function getDropDown() {
-    if (props.authed) {
-      return (
-        <Dropdown
-          navbar="true"
-          isOpen={dropdownOpen}
-          toggle={() => toggleDropdownOpen(!dropdownOpen)}
-        >
-          <DropdownToggle navbar="true" caret>
-            Account Options
-          </DropdownToggle>
-          <DropdownMenu dark="true">
-            <DropdownItem>
-              <NavLink onClick={props.handleLogout} href="/login">
-                Log out
-              </NavLink>
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      );
-    } else {
-      return <p />;
-    }
-  }
-
   return (
-    <Navbar color="dark" dark={true} expand="sm">
-      <Container>
-        <NavbarBrand href="/">{"Drop It"}</NavbarBrand>
-        <Collapse isOpen={isOpen} navbar={true}>
-          <Nav className="mr-auto" navbar>
-            {props.authed &&
-              //   !adminStatus &&
-              navLinks.map((option, index) => {
-                return (
-                  <NavItem key={index}>
-                    <NavLink href={option.link}>{option.name}</NavLink>
-                  </NavItem>
-                );
-              })}
-          </Nav>
-
-          <Nav className="ml-auto" nav="true">
-            {getDropDown()}
-          </Nav>
-        </Collapse>
-        <NavbarToggler onClick={() => toggleOpen(!isOpen)} />
-      </Container>
-    </Navbar>
+    <div className="user-nav">
+      <ReactStrap.Navbar dark expand="md" variant="light">
+        <ReactStrap.NavbarBrand
+          className="logo d-flex align-items-end"
+          href="/"
+        >
+          drop it!
+        </ReactStrap.NavbarBrand>
+        <ReactStrap.Nav className="ml-auto the-nav" navbar>
+          {navLinks.map((option, index) => {
+            return (
+              <ReactStrap.NavItem key={index}>
+                <ReactStrap.NavLink href={option.link}>
+                  {option.name}
+                </ReactStrap.NavLink>
+              </ReactStrap.NavItem>
+            );
+          })}
+          <ReactStrap.NavLink>
+            <CustomSignOut />
+          </ReactStrap.NavLink>
+        </ReactStrap.Nav>
+      </ReactStrap.Navbar>
+    </div>
   );
-}
+};
 
-export default Navigation;
+export default NavBar;

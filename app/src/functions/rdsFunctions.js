@@ -1,7 +1,9 @@
+import {Config} from "../config/config.json";
+
 export async function addUserToRDS(newUser) {
   fetch(
-    "http://ec2-54-203-103-43.us-west-2.compute.amazonaws.com:4000/" +
-      `users/add?id=${newUser.userId}&firstName=${newUser.firstName}` +
+    `${Config.DB_QUERY}` +
+      `/users/add?id=${newUser.userId}&firstName=${newUser.firstName}` +
       `&lastName=${newUser.lastName}`
   ).catch((err) => {
     console.log(err);
@@ -11,8 +13,8 @@ export async function addUserToRDS(newUser) {
 export async function checkIfUserExists(userId) {
   let exists = false;
   await fetch(
-    "http://ec2-54-203-103-43.us-west-2.compute.amazonaws.com:4000/" +
-      `users?id=${userId}`
+    `${Config.DB_QUERY}` +
+      `/users?id=${userId}`
   )
     .then((response) => response.json())
     .then((response) => {
@@ -27,8 +29,8 @@ export async function checkIfUserExists(userId) {
 export async function checkIfUserIsAdmin(userId) {
   let isAdmin = false;
   await fetch(
-    "http://ec2-54-203-103-43.us-west-2.compute.amazonaws.com:4000/" +
-      `users?id=${userId}`
+    `${Config.DB_QUERY}` +
+      `/users?id=${userId}`
   )
     .then((response) => response.json())
     .then((response) => {
@@ -43,8 +45,8 @@ export async function checkIfUserIsAdmin(userId) {
 export async function addFileToTable(fileData) {
   const { userId, fileId, title, description, size } = fileData;
   fetch(
-    "http://ec2-54-203-103-43.us-west-2.compute.amazonaws.com:4000/" +
-      `files/add?userId=${userId}&fileId=${fileId}&title=${title}` +
+    `${Config.DB_QUERY}` +
+      `/files/add?userId=${userId}&fileId=${fileId}&title=${title}` +
       `&description=${description}&size=${size}`
   ).catch((err) => {
     console.log(err);
@@ -54,8 +56,8 @@ export async function addFileToTable(fileData) {
 export async function getUserFiles(userId) {
   let objs = [];
   await fetch(
-    "http://ec2-54-203-103-43.us-west-2.compute.amazonaws.com:4000/" +
-      `files?id=${userId}`
+    `${Config.DB_QUERY}` +
+      `/files?id=${userId}`
   )
     .then((response) => response.json())
     .then((response) => {
@@ -70,8 +72,8 @@ export async function getUserFiles(userId) {
 export async function deleteFile(userId, entryId) {
   let objs = [];
   await fetch(
-    "http://ec2-54-203-103-43.us-west-2.compute.amazonaws.com:4000/" +
-      `files/remove?id=${entryId}&userId=${userId}`
+    `${Config.DB_QUERY}` +
+      `/files/remove?id=${entryId}&userId=${userId}`
   )
     .then((response) => response.json())
     .then((response) => {
@@ -93,8 +95,8 @@ export async function updateFile(newFileData) {
   size = size ? size : "";
   description = description ? description : "";
   await fetch(
-    "http://ec2-54-203-103-43.us-west-2.compute.amazonaws.com:4000/" +
-      `files/update?entryId=${entryId}&userId=${userId}&fileId=${fileName}` +
+    `${Config.DB_QUERY}` +
+      `/files/update?entryId=${entryId}&userId=${userId}&fileId=${fileName}` +
       `&title=${title}&description=${description}&size=${size}`
   )
     .then((response) => response.json())
