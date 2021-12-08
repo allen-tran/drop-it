@@ -4,8 +4,21 @@ import "./index.css";
 import App from "./App";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+class Doc extends React.Component{
+  componentDidMount(){
+    document.title = "drop it!"
+  }
+
+  render(){
+    return(
+        null
+    );
+  }
+}
+
 ReactDOM.render(
   <React.StrictMode>
+    <Doc />
     <App />
   </React.StrictMode>,
   document.getElementById("root")

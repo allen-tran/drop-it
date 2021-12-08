@@ -24,50 +24,32 @@ pool.getConnection(function (err) {
   console.log("connection successful");
 });
 
+/*
+HEALTH CHECK
+*/ 
 app.get("/", (req, res) => {
   res.send("OK");
 });
 
-app.get("/users", (req, res) => {
-  const { id } = req.query;
-  pool.getConnection(function (err, con) {
-    con.query(
-      `select * from Users where id='${id}' and is_admin=1`,
-      (err, results) => {
-        if (err) {
-          res.send(err);
-        } else if (results.length === 1) {
-          res.send({ isAdmin: true, exists: true });
-        } else {
-          con.query(`select * from users where id='${id}'`, (err, results) => {
-            if (results.length === 1) {
-              res.send({ isAdmin: false, exists: true });
-            } else {
-              res.send({ isAdmin: false, exists: false });
-            }
-          });
-        }
-      }
-    );
-    con.release();
-  });
-});
-app.get("/users/add", (req, res) => {
+/*
+USERS ADD
+*/
+app.get('/users/add', (req, res) => {
   const { id, firstName, lastName, admin } = req.query;
   pool.getConnection(function (err, con) {
-    con.query(
-      `insert into Users (id, first_name, last_name, is_admin)` +
-        ` values('${id.trim()}', '${firstName}', '${lastName}', ` +
-        `${admin !== undefined ? 1 : 0})`,
-      (err, results) => {
+    con.query(`insert into users (id, first_name, last_name, is_admin)` +
+      ` values('${id.trim()}', '${firstName}', '${lastName}', ` +
+      `${admin !== undefined ? 1 : 0})`, (err, results) => {
         if (err) res.send(err);
         else res.send(`Successfully added ${id} into the table`);
-      }
-    );
+      });
     con.release();
   });
 });
 
+/*
+USERS REMOVE
+*/
 app.get("/users/remove", (req, res) => {
   const { id } = req.query;
   pool.getConnection(function (err, con) {
@@ -89,37 +71,29 @@ app.get("/users/remove", (req, res) => {
   });
 });
 
-app.get("/files", (req, res) => {
+/*
+ADD FILES
+*/
+app.get("/files/add", (req, res) => {
+  var currTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
   pool.getConnection(function (err, con) {
-    const { id } = req.query;
-    if (!id) return res.json({});
-    let isAdmin = false;
+    const { userId, fileId, title, description, size } = req.query;
     con.query(
-      `select * from Users where id='${id}' and is_admin=1`,
+      `insert into Files (user_id, file_id, title, size, description,` +
+      `uploaded_time, updated_time) values('${userId}', '${fileId}', '${title}',` +
+      `${size}, '${description}', '${currTime}', '${currTime}')`,
       (err, results) => {
         if (err) res.send(err);
-        else {
-          isAdmin = results.length === 1;
-        }
-        let query = `select * from files where user_id='${id}'`;
-        if (isAdmin) {
-          query =
-            "select a.first_name, a.last_name, a.id, b.* from users a, files b where a.id = b.user_id";
-        }
-        con.query(query, (err, results) => {
-          if (err) res.send(err);
-          else {
-            return res.json({
-              data: results,
-            });
-          }
-        });
+        else res.send(`Successfully added ${fileId} into the table`);
       }
     );
     con.release();
   });
 });
 
+/*
+UPDATE FILES
+*/
 app.get("/files/update", (req, res) => {
   let currentTime = new Date().toUTCString();
   const { entryId, userId, fileId, title, description, size } = req.query;
@@ -168,23 +142,9 @@ app.get("/files/update", (req, res) => {
   });
 });
 
-app.get("/files/add", (req, res) => {
-  var time = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  pool.getConnection(function (err, con) {
-    const { userId, fileId, title, description, size } = req.query;
-    con.query(
-      `insert into Files (file_user_id, file_id, title, size, file_description, time_uploaded) values('${userId}', '${fileId}', '${title}',` +
-        `${size}, '${description}', '${time}')`,
-      (err, results) => {
-        if (err) res.send(err);
-        else res.send(`Successfully added ${fileId} into the table`);
-      }
-    );
-    con.release();
-  });
-});
-
+/*
+REMOVE FILES
+*/
 app.get("/files/remove", (req, res) => {
   const { id, userId } = req.query;
   pool.getConnection(function (err, con) {
@@ -231,23 +191,10 @@ app.get("/files/remove", (req, res) => {
     con.release();
   });
 });
+
+/*
+APP LISTENER
+*/
 app.listen(3001, () => {
   console.log("Port 3001");
 });
-
-// app.post("/", (req, res) => {
-//   var { name, rollno } = req.body;
-//   var records = [[req.body.name, req.body.rollno]];
-//   if (records[0][0] != null) {
-//     con.query(
-//       "INSERT into student (name,rollno) VALUES ?",
-//       [records],
-//       function (err, res, fields) {
-//         if (err) throw err;
-
-//         console.log(res);
-//       }
-//     );
-//   }
-//   res.json("Form recieved");
-// });

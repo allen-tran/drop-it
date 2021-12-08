@@ -5,11 +5,34 @@ import awsconfig from "./aws-exports";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import Navigation from "./components/Navbar";
 import UploadView from "./components/UploadView";
-// import ViewFilesView from "./components/ViewFilesView";
+import FileList from "./components/FileList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomeView from "./components/HomeView";
 Amplify.configure(awsconfig);
 
-function App() {
+function App(props) {
+
+  // const [authenticated, setAuthenticated] = useState(false);
+  // const [isAuthenticating, setIsAuthenticating] = useState(true);
+
+  // async function getAuthStatus() {
+  //   try {
+  //     await Auth.currentSession();
+  //     setAuthenticated(true);
+  //   }
+  //   catch (e) {
+  //     if (e !== "No current user") {
+  //       alert(e);
+  //     }
+  //   }
+  //   setIsAuthenticating(false);
+  // }
+
+  // async function handleLogout() {
+  //   await Auth.signOut();
+  //   setAuthenticated(false);
+  //   props.history.push("/login");
+  // }
   return (
     <div className="App">
       <Navigation />
@@ -18,7 +41,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/drop" element={<UploadView />} />
-            {/* <Route path= "/" element={<ViewFilesView/>}/> */}
+            <Route path= "/" element={<FileList/>}/>
           </Routes>
         </BrowserRouter>
       </div>
@@ -26,4 +49,4 @@ function App() {
   );
 }
 
-export default withAuthenticator(App, false);
+export default withAuthenticator(App);

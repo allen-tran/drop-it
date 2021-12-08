@@ -3,7 +3,6 @@ import { Container, Button, Row, Input } from "reactstrap";
 import { getAuthInfo } from "../functions/AuthFunctions";
 import { uploadObject } from "../functions/S3Functions";
 import { addFileToTable } from "../functions/RDSFunctions";
-
 function UploadView(appProps) {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState();
