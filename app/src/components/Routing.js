@@ -37,7 +37,7 @@ function Routing({ appProps }) {
             path="/drop"
             appProps={{
               allowed: appProps.authenticated,
-              redirect: "/",
+              redirect: "/drop",
               ...appProps,
             }}
             component={UploadView}

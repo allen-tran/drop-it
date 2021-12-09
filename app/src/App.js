@@ -3,7 +3,7 @@ import "./App.css";
 import Amplify, {Auth} from "aws-amplify";
 import awsconfig from "./aws-exports";
 import Navigation from "./components/Navbar";
-import { BrowserRouter, Switch, withRouter} from "react-router-dom";
+import { BrowserRouter, withRouter} from "react-router-dom";
 import Routing from "./components/Routing";
 import React, {useState} from "react"
 Amplify.configure(awsconfig);
@@ -11,20 +11,20 @@ Amplify.configure(awsconfig);
 function App(props) {
 
   const [authenticated, setAuthenticated] = useState(false);
-  const [isAuthenticating, setIsAuthenticating] = useState(true);
+  // const [isAuthenticating, setIsAuthenticating] = useState(true);
 
-  async function getAuthStatus() {
-    try {
-      await Auth.currentSession();
-      setAuthenticated(true);
-    }
-    catch (e) {
-      if (e !== "No current user") {
-        alert(e);
-      }
-    }
-    setIsAuthenticating(false);
-  }
+  // async function getAuthStatus() {
+  //   try {
+  //     await Auth.currentSession();
+  //     setAuthenticated(true);
+  //   }
+  //   catch (e) {
+  //     if (e !== "No current user") {
+  //       alert(e);
+  //     }
+  //   }
+  //   setIsAuthenticating(false);
+  // }
 
   async function handleLogout() {
     await Auth.signOut();

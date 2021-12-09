@@ -7,7 +7,7 @@ function HomeView(appProps) {
     appProps.authenticated &&
     <div>
       <p>
-        through the years, and shed so many tears
+        there is nothing to see here, how about we drop something?
       </p>
       <FileList {...appProps} />
       null

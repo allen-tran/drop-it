@@ -22,11 +22,11 @@ export default function Signup(props) {
   const [loading, setLoading] = useState(false);
 
   const forms = [
-    { text: "Email", type: "email", callback: setEmail },
-    { text: "First Name", type: "text", callback: setFirstName },
-    { text: "Last Name", type: "text", callback: setLastName },
-    { text: "Password", type: "password", callback: setPassword },
-    { text: "Confirm Password", type: "password", callback: setPasswordConfirm }
+    { text: "email", type: "email", callback: setEmail },
+    { text: "first Name", type: "text", callback: setFirstName },
+    { text: "last Name", type: "text", callback: setLastName },
+    { text: "password", type: "password", callback: setPassword },
+    { text: "confirm Password", type: "password", callback: setPasswordConfirm }
   ];
 
   function validateForm() {
@@ -85,21 +85,21 @@ export default function Signup(props) {
     return (
       <form onSubmit={handleConfirmationSubmit}>
         <FormGroup>
-          <Label>Confirmation Code</Label>
+          <Label>confirmation code</Label>
           <Input
             autoFocus
             type="tel"
             onChange={(e) => setConfirmationCode(e.target.value)}
-            placeholder="Enter 6 digit code here..."
+            placeholder="enter 6 digit code here..."
           />
-          <Label>Please check your email for the code.</Label>
+          <Label>please check your email for the code.</Label>
         </FormGroup>
         <Button
           block
           disabled={!validateConfirmationForm()}
           type="submit"
         >
-          {loading ? <Spinner color="primary" /> : "Login"}
+          {loading ? <Spinner color="primary" /> : "login"}
         </Button>
       </form>
     );
@@ -125,7 +125,7 @@ export default function Signup(props) {
           disabled={!validateForm()}
           type="submit"
         >
-          {loading ? <Spinner color="primary" /> : "Login"}
+          {loading ? <Spinner color="primary" /> : "login"}
         </Button>
       </form>
     );

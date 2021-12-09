@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, ListGroup } from "reactstrap";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { getUserFiles } from "../functions/RDSFunctions";
-import { getAuthInfo, isAdmin } from "../functions/AuthFunctions";
+import { getAuthInfo,  } from "../functions/AuthFunctions";
 import File from "./File";
 import NewModal from "./NewModal.js";
 
@@ -24,10 +24,8 @@ class FileList extends Component {
 
   renderObjects = async () => {
     let returnedId = await getAuthInfo();
-    let adminStatus = await isAdmin();
     let userFiles = await getUserFiles(returnedId);
     this.setState({
-      adminStatus: adminStatus,
       items: userFiles
     });
   }
@@ -58,7 +56,6 @@ class FileList extends Component {
                   <CSSTransition timeout={500} classNames="fade">
                     <File
                       item={item}
-                      isAdmin={this.state.adminStatus}
                       toggleShowEditModal={this.toggleShowEditModal}
                     />
                   </CSSTransition>

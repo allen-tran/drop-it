@@ -8,6 +8,7 @@ import {
   Spinner
 } from "reactstrap";
 import { Auth } from "aws-amplify";
+import "./Login.css";
 
 function LoginView(props) {
   const [email, setEmail] = useState("");
@@ -15,8 +16,8 @@ function LoginView(props) {
   const [loading, setLoading] = useState(false);
 
   const forms = [
-    { text: "Email", name: "email", callback: setEmail },
-    { text: "Password", name: "password", callback: setPassword }
+    { text: "email", name: "email", callback: setEmail },
+    { text: "password", name: "password", callback: setPassword }
   ];
 
   async function handleSignIn() {
@@ -53,15 +54,16 @@ function LoginView(props) {
         })}
         <Button
           block
+          className="login-button"
           disabled={!formEmpty() || loading}
           type="submit"
           onClick={() => handleSignIn(email, password)}
         >
-          {loading ? <Spinner color="primary" /> : "Login"}
+          {loading ? <Spinner color="primary" /> : "login"}
         </Button>
       </form>
       <br />
-      <a href="signup">New user? Sign up here!</a>
+      <a href="signup">new user? sign up here!</a>
     </Container>
   );
 }
