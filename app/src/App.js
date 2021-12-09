@@ -5,40 +5,50 @@ import awsconfig from "./aws-exports";
 import Navigation from "./components/Navbar";
 import { BrowserRouter, withRouter} from "react-router-dom";
 import Routing from "./components/Routing";
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 Amplify.configure(awsconfig);
 
 function App(props) {
 
   const [authenticated, setAuthenticated] = useState(false);
-  // const [isAuthenticating, setIsAuthenticating] = useState(true);
-
-  // async function getAuthStatus() {
-  //   try {
-  //     await Auth.currentSession();
-  //     setAuthenticated(true);
-  //   }
-  //   catch (e) {
-  //     if (e !== "No current user") {
-  //       alert(e);
-  //     }
-  //   }
-  //   setIsAuthenticating(false);
-  // }
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
+  async function getAuthStatus() {
+    try {
+      await Auth.currentSession();
+      setAuthenticated(true);
+    }
+    catch (e) {
+      // if (e !== "no current user") {
+      //   alert(e);
+      // }
+    }
+    setIsAuthenticating(false);
+  }
+  useEffect(() => {
+    getAuthStatus();
+  }); 
 
   async function handleLogout() {
-    await Auth.signOut();
-    setAuthenticated(false);
-    props.history.push("/login");
+      // await Auth.signOut();
+      
+      Auth.signOut().then(()=>
+      window.location.reload(false));
+      
+      setAuthenticated(false);
+      props.history.push("/login"); 
   }
+
+
+
   return (
+    !isAuthenticating &&
     <div className="App">
-      <Navigation authed={authenticated} handleLogout={handleLogout}/>
-      <div className="body-container">
         <BrowserRouter>
+      <Navigation authed={authenticated} />
+      <div className="body-container">
           <Routing appProps={{ authenticated, setAuthenticated }} />
-        </BrowserRouter>
       </div>
+        </BrowserRouter>
     </div>
   );
 }

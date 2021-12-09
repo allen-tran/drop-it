@@ -1,6 +1,7 @@
 import { Config } from "../config/config.json";
 
 export async function addUserToRDS(newUser) {
+  console.log(newUser.userId, newUser.firstName, newUser.lastName);
   fetch(
     `${Config.DB_QUERY}` +
       `/users/add?id=${newUser.userId}&firstName=${newUser.firstName}` +

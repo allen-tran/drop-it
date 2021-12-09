@@ -35,10 +35,10 @@ app.get("/", (req, res) => {
 USERS ADD
 */
 app.get('/users/add', (req, res) => {
-  const { id, firstName, lastName, admin } = req.query;
+  const { id, firstName, lastName } = req.query;
   pool.getConnection(function (err, con) {
     con.query(`insert into Users (id, first_name, last_name)` +
-      ` values('${id.trim()}', '${firstName}', '${lastName}`, (err, results) => {
+      ` values('${id.trim()}', '${firstName}', '${lastName}')`, (err, results) => {
         if (err) res.send(err);
         else res.send(`Successfully added ${id} into the table`);
       });
@@ -57,7 +57,7 @@ app.get("/users/remove", (req, res) => {
       (err, results) => {
         if (err) res.send(err);
         else if (results.length) {
-          con.query(`delete from users where id='${id}'`, (err, results) => {
+          con.query(`delete from Users where id='${id}'`, (err, results) => {
             if (err) res.send(err);
             else res.send(`Successfully deleted entry ${id} from the table`);
           });
@@ -66,6 +66,37 @@ app.get("/users/remove", (req, res) => {
         }
       }
     );
+    con.release();
+  });
+});
+
+/*
+GET FILES
+*/
+app.get('/files', (req, res) => {
+  pool.getConnection(function (err, con) {
+    const { id } = req.query;
+    if (!id) return res.json({});
+    let isAdmin = false;
+    con.query(`select * from users where id='${id}' and is_admin=1`,
+      (err, results) => {
+        if (err) res.send(err);
+        else {
+          isAdmin = results.length === 1;
+        }
+        let query = `select * from files where user_id='${id}'`;
+        if (isAdmin) {
+          query = 'select a.first_name, a.last_name, a.id, b.* from users a, files b where a.id = b.user_id';
+        }
+        con.query(query, (err, results) => {
+          if (err) res.send(err);
+          else {
+            return res.json({
+              data: results
+            });
+          }
+        });
+      });
     con.release();
   });
 });
@@ -98,7 +129,7 @@ app.get("/files/update", (req, res) => {
   const { entryId, userId, fileId, title, description, size } = req.query;
   pool.getConnection(function (err, con) {
     con.query(
-      `select * from Users where id='${userId}' and is_admin=1`,
+      `select * from Users where id='${userId}'`,
       (err, results) => {
         if (err) res.send(err);
         let query = `update files set `;
@@ -116,7 +147,7 @@ app.get("/files/update", (req, res) => {
           });
         } else {
           con.query(
-            `select * from Files where entry_id=${entryId} ` +
+            `select * from Files where entry_id=${entryId}` +
               `and user_id='${userId}'`,
             (err, results) => {
               if (err) res.send(err);
@@ -148,7 +179,7 @@ app.get("/files/remove", (req, res) => {
   const { id, userId } = req.query;
   pool.getConnection(function (err, con) {
     con.query(
-      `select * from Users where id='${userId}' and is_admin=1`,
+      `select * from Users where id='${userId}'`,
       (err, results) => {
         if (err) res.send(err);
         if (results.length === 1) {

@@ -23,10 +23,10 @@ export default function Signup(props) {
 
   const forms = [
     { text: "email", type: "email", callback: setEmail },
-    { text: "first Name", type: "text", callback: setFirstName },
-    { text: "last Name", type: "text", callback: setLastName },
+    { text: "first name", type: "text", callback: setFirstName },
+    { text: "last name", type: "text", callback: setLastName },
     { text: "password", type: "password", callback: setPassword },
-    { text: "confirm Password", type: "password", callback: setPasswordConfirm }
+    { text: "confirm password", type: "password", callback: setPasswordConfirm }
   ];
 
   function validateForm() {
@@ -135,7 +135,7 @@ export default function Signup(props) {
     <Container>
       {newUser === null ? renderForm() : renderConfirmationForm()}
       <br />
-      <a href="login">Existing account? Log in here!</a>
+      <a href="login">i already have an account</a>
     </Container>
   );
 }

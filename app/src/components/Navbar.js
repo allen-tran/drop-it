@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import * as ReactStrap from "reactstrap";
 import "./Navbar.css";
 import { CustomSignOut } from "./CustomSignOut";
@@ -7,6 +7,8 @@ const NavBar = (props) => {
     { name: "drop file", link: "drop" },
     { name: "view files", link: "/" },
   ];
+  const [isOpen, toggleOpen] = useState(false);
+
   return (
     <div className="user-nav">
       <ReactStrap.Navbar dark expand="md" variant="light">
@@ -17,7 +19,7 @@ const NavBar = (props) => {
           drop it!
         </ReactStrap.NavbarBrand>
         <ReactStrap.Nav className="ml-auto the-nav" navbar>
-          {navLinks.map((option, index) => {
+          {props.authed && navLinks.map((option, index) => {
             return (
               <ReactStrap.NavItem key={index}>
                 <ReactStrap.NavLink href={option.link}>
@@ -26,8 +28,8 @@ const NavBar = (props) => {
               </ReactStrap.NavItem>
             );
           })}
-          <ReactStrap.NavLink>
-            <CustomSignOut />
+          <ReactStrap.NavLink href = "/login">
+            {props.authed && <CustomSignOut />}
           </ReactStrap.NavLink>
         </ReactStrap.Nav>
       </ReactStrap.Navbar>
