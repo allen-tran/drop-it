@@ -37,9 +37,8 @@ USERS ADD
 app.get('/users/add', (req, res) => {
   const { id, firstName, lastName, admin } = req.query;
   pool.getConnection(function (err, con) {
-    con.query(`insert into users (id, first_name, last_name, is_admin)` +
-      ` values('${id.trim()}', '${firstName}', '${lastName}', ` +
-      `${admin !== undefined ? 1 : 0})`, (err, results) => {
+    con.query(`insert into Users (id, first_name, last_name)` +
+      ` values('${id.trim()}', '${firstName}', '${lastName}`, (err, results) => {
         if (err) res.send(err);
         else res.send(`Successfully added ${id} into the table`);
       });

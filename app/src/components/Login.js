@@ -31,47 +31,6 @@ function LoginView(props) {
     }
   }
 
-  async function handleFacebookLogin(response) {
-    const { error, name, userID, accessToken, expiresIn } = response;
-    const userEmail = response.email;
-    if (!error) {
-      if (name && userEmail && userID) {
-        try {
-          await Auth.federatedSignIn("facebook",
-            { accessToken, expiresIn: (expiresIn * 1000 + new Date().getTime()) }
-          );
-         
-        } catch (error) {
-          alert("Could not sign in with facebook.");
-        }
-      } else {
-        alert("Could not sign in with facebook.");
-      }
-    }
-  }
-
-  async function handleGoogleLogin(response) {
-    if (!response.error) {
-      try {
-        await Auth.federatedSignIn(
-          "google", {
-            accessToken: response.accessToken.toString(),
-            expiresIn: (response.Zi.expires_in * 1000 + new Date().getTime())
-          });
-        // await handleNewSocialMediaSignIn({
-        //   userFirstName: response.profileObj.givenName,
-        //   userLastName: response.profileObj.familyName,
-        //   userEmail: response.profileObj.email,
-        //   password: "X!" + md5(response.El)
-        // });
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      }
-    }
-  }
-
-
   function formEmpty() {
     return email.length && password.length;
   }

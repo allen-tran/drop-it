@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-router-dom": "^5.0.0",
     "reactstrap": "^9.0.1"
   }
 }

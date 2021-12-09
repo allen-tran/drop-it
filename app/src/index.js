@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter } from "react-router-dom";
 
 class Doc extends React.Component{
   componentDidMount(){
@@ -19,7 +20,9 @@ class Doc extends React.Component{
 ReactDOM.render(
   <React.StrictMode>
     <Doc />
+    <BrowserRouter>
     <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
