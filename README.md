@@ -37,7 +37,8 @@ $ node server.js
 ## Visuals
 
 1. Sign Up View
-<img width="1512" alt="Screen Shot 2021-12-05 at 8 33 52 AM" src="https://user-images.githubusercontent.com/63386979/144755040-9ead17a8-b7c2-465b-90de-d7163046a192.png">
+
+<img width="1512" alt=" 2021-12-08 at 8 28 33 PM" src="https://user-images.githubusercontent.com/63386979/145334515-e14282dc-d568-49a8-a334-b57ed5336893.png">
 
 *users can start by clicking `create account` where they will be asked to input their username, email address, password, and phone number*
 
@@ -46,7 +47,8 @@ $ node server.js
 *after inputting valid details, the client will be given a unique authentification code to confirm their email address*
 
 2. Sign In View
-<img width="1512" alt="Screen Shot 2021-12-05 at 8 31 00 AM" src="https://user-images.githubusercontent.com/63386979/144754961-577e073b-56ac-4bb0-a679-6b7f722c4866.png">
+
+<img width="1512" alt=" 2021-12-08 at 8 27 46 PM" src="https://user-images.githubusercontent.com/63386979/145334446-ab1f9fdf-71c6-437d-b7ce-21a3c8891f47.png">
 
 *after successful account creation, users will then be asked to sign in - they have been added to the pool in AWS Cognito*
 
@@ -57,7 +59,8 @@ $ node server.js
 
 4. Drop File View
 
-![image](https://user-images.githubusercontent.com/63386979/144902581-6f97bd00-d8a9-43ac-9acd-a8faada1eb72.png)
+<img width="1512" alt=" 2021-12-08 at 8 26 34 PM" src="https://user-images.githubusercontent.com/63386979/145334374-f957a984-f750-483a-b13d-8ec27d658519.png">
+
 
 -   *upon heading over to `drop file` users will be greeted with this page where they can either drag and drop their files or manually click `Choose File` where they will be able to select their file from their local file manager*
 -   *note: `what should we call this?` and `what is this?` is completely **optional***
