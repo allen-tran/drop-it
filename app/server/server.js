@@ -37,7 +37,7 @@ USERS ADD
 app.get('/users/add', (req, res) => {
   const { id, firstName, lastName } = req.query;
   pool.getConnection(function (err, con) {
-    con.query(`insert into Users (id, first_name, last_name)` +
+    con.query(`INSERT into Users (id, first_name, last_name)` +
       ` values('${id.trim()}', '${firstName}', '${lastName}')`, (err, results) => {
         if (err) res.send(err);
         else res.send(`Successfully added ${id} into the table`);
@@ -53,13 +53,13 @@ app.get("/users/remove", (req, res) => {
   const { id } = req.query;
   pool.getConnection(function (err, con) {
     con.query(
-      `select * from Users where id='${id}' and is_admin=1`,
+      `SELECT * FROM Users WHERE id='${id}'`,
       (err, results) => {
         if (err) res.send(err);
         else if (results.length) {
-          con.query(`delete from Users where id='${id}'`, (err, results) => {
+          con.query(`DELETE FROM Users WHERE id='${id}'`, (err, results) => {
             if (err) res.send(err);
-            else res.send(`Successfully deleted entry ${id} from the table`);
+            else res.send(`Successfully deleted entry ${id} FROM the table`);
           });
         } else {
           res.send(`Could not complete remove operation on ${id}`);
@@ -77,17 +77,10 @@ app.get('/files', (req, res) => {
   pool.getConnection(function (err, con) {
     const { id } = req.query;
     if (!id) return res.json({});
-    let isAdmin = false;
-    con.query(`select * from users where id='${id}' and is_admin=1`,
+    con.query(`SELECT * FROM Users WHERE id='${id}'`,
       (err, results) => {
         if (err) res.send(err);
-        else {
-          isAdmin = results.length === 1;
-        }
-        let query = `select * from files where user_id='${id}'`;
-        if (isAdmin) {
-          query = 'select a.first_name, a.last_name, a.id, b.* from users a, files b where a.id = b.user_id';
-        }
+        let query = `SELECT * FROM Files WHERE user_id='${id}'`;
         con.query(query, (err, results) => {
           if (err) res.send(err);
           else {
@@ -109,7 +102,7 @@ app.get("/files/add", (req, res) => {
   pool.getConnection(function (err, con) {
     const { userId, fileId, title, description, size } = req.query;
     con.query(
-      `insert into Files (user_id, file_id, title, size, description,` +
+      `INSERT into Files (user_id, file_id, title, size, description,` +
       `uploaded_time, updated_time) values('${userId}', '${fileId}', '${title}',` +
       `${size}, '${description}', '${currTime}', '${currTime}')`,
       (err, results) => {
@@ -129,7 +122,7 @@ app.get("/files/update", (req, res) => {
   const { entryId, userId, fileId, title, description, size } = req.query;
   pool.getConnection(function (err, con) {
     con.query(
-      `select * from Users where id='${userId}'`,
+      `SELECT * FROM Users WHERE id='${userId}'`,
       (err, results) => {
         if (err) res.send(err);
         let query = `update files set `;
@@ -138,7 +131,7 @@ app.get("/files/update", (req, res) => {
         query += size ? `size = ${size}, ` : "";
         query += description ? `description = '${description}', ` : "";
         query += `updated_time = '${currentTime}' `;
-        query += `where entry_id = ${entryId}`;
+        query += `WHERE entry_id = ${entryId}`;
 
         if (results.length === 1) {
           con.query(query, (err, results) => {
@@ -147,7 +140,7 @@ app.get("/files/update", (req, res) => {
           });
         } else {
           con.query(
-            `select * from Files where entry_id=${entryId}` +
+            `SELECT * FROM Files WHERE entry_id=${entryId}` +
               `and user_id='${userId}'`,
             (err, results) => {
               if (err) res.send(err);
@@ -179,31 +172,31 @@ app.get("/files/remove", (req, res) => {
   const { id, userId } = req.query;
   pool.getConnection(function (err, con) {
     con.query(
-      `select * from Users where id='${userId}'`,
+      `SELECT * FROM Users WHERE id='${userId}'`,
       (err, results) => {
         if (err) res.send(err);
         if (results.length === 1) {
           con.query(
-            `delete from Files where entry_id='${id}'`,
+            `delete FROM Files WHERE entry_id='${id}'`,
             (err, results) => {
               if (err) res.send(err);
-              else res.send(`Successfully deleted entry ${id} from the table`);
+              else res.send(`Successfully deleted entry ${id} FROM the table`);
             }
           );
         } else {
           con.query(
-            `select * from Files where entry_id=${id} ` +
+            `SELECT * FROM Files WHERE entry_id=${id} ` +
               `and user_id='${userId}'`,
             (err, results) => {
               if (err) res.send(err);
               if (results.length === 1) {
                 con.query(
-                  `delete from Files where entry_id='${id}'`,
+                  `delete FROM Files WHERE entry_id='${id}'`,
                   (err, results) => {
                     if (err) res.send(err);
                     else
                       res.send(
-                        `Successfully deleted entry ${id} from the table`
+                        `Successfully deleted entry ${id} FROM the table`
                       );
                   }
                 );
