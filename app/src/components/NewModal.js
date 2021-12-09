@@ -34,17 +34,17 @@ function NewModal(props) {
 
   let footerButtons = [
     {
-      text: fileValid ? "Save" : "File too large",
+      text: fileValid ? "save" : "file too large",
       enabled: fileValid,
       callback: handleSave, color: "primary"
     },
     {
-      text: "Delete file",
+      text: "delete file",
       enabled: fileValid,
       callback: handleDelete, color: "primary"
     },
     {
-      text: "Cancel",
+      text: "cancel",
       enabled: true,
       callback: props.toggleShowEditModal, color: "danger"
     }
@@ -117,7 +117,7 @@ function NewModal(props) {
         toggle={() => toggleModal(!showModal)}
       >
         <ModalHeader>
-          Item {itemExists ? "Saved" : "Deleted"}.
+          Item {itemExists ? "saved" : "deleted"}.
         </ModalHeader>
         <ModalFooter>
           <Button

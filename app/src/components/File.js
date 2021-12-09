@@ -23,7 +23,7 @@ export function File(props) {
         <Row>
           <Col>
             <h4>
-              Uploaded by:
+              uploaded by:
             </h4>
           </Col>
           <Col>
@@ -52,13 +52,13 @@ export function File(props) {
                 {renderUserName(props.item.first_name, props.item.last_name)}
                 <Row style={{border: ".5px solid gray"}}>
                   <Col>
-                    <p>Size: {props.item.size} bytes</p>
+                    <p>size: {props.item.size} bytes</p>
                   </Col>
                   <Col>
-                    <p>Last Modified: {props.item.updated_time}</p>
+                    <p>last modified: {props.item.updated_time}</p>
                   </Col>
                   <Col>
-                    <p>Uploaded: {props.item.uploaded_time}</p>
+                    <p>uploaded: {props.item.uploaded_time}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -70,11 +70,11 @@ export function File(props) {
             <Row style={{float: "right"}}>
               <Button className={"btn btn-warning float-right"}
                 onClick={async () => await downloadFile()}>
-                Download
+                download
               </Button>
               <Button className={"btn btn-info float-right"}
                 onClick={() => toggleShowEditModal(props.item)}>
-                Info
+                edit
               </Button>
             </Row>
           </div>

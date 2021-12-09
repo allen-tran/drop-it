@@ -118,19 +118,19 @@ app.get("/files/add", (req, res) => {
 UPDATE FILES
 */
 app.get("/files/update", (req, res) => {
-  let currentTime = new Date().toUTCString();
+  var currTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
   const { entryId, userId, fileId, title, description, size } = req.query;
   pool.getConnection(function (err, con) {
     con.query(
       `SELECT * FROM Users WHERE id='${userId}'`,
       (err, results) => {
         if (err) res.send(err);
-        let query = `update files set `;
+        let query = `update Files set `;
         query += fileId ? `file_id = '${fileId}', ` : "";
         query += title ? `title = '${title}', ` : "";
         query += size ? `size = ${size}, ` : "";
         query += description ? `description = '${description}', ` : "";
-        query += `updated_time = '${currentTime}' `;
+        query += `updated_time = '${currTime}' `;
         query += `WHERE entry_id = ${entryId}`;
 
         if (results.length === 1) {
