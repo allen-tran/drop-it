@@ -98,8 +98,9 @@ export default function Signup(props) {
           block
           disabled={!validateConfirmationForm()}
           type="submit"
+          style ={{backgroundColor: "#c0d6df" }}
         >
-          {loading ? <Spinner color="primary" /> : "login"}
+          {loading ? <Spinner color="primary" /> : "verify"} 
         </Button>
       </form>
     );
@@ -124,8 +125,9 @@ export default function Signup(props) {
           block
           disabled={!validateForm()}
           type="submit"
+          style ={{backgroundColor: "#c0d6df" }}
         >
-          {loading ? <Spinner color="primary" /> : "login"}
+          {loading ? <Spinner color="primary" /> : "sign up"}
         </Button>
       </form>
     );

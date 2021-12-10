@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import * as ReactStrap from "reactstrap";
 import "./Navbar.css";
 import { CustomSignOut } from "./CustomSignOut";
@@ -7,7 +7,7 @@ const NavBar = (props) => {
     { name: "drop file", link: "drop" },
     { name: "view files", link: "/" },
   ];
-  const [isOpen, toggleOpen] = useState(false);
+  // const [isOpen, toggleOpen] = useState(false);
 
   return (
     <div className="user-nav">

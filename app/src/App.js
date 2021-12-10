@@ -28,15 +28,15 @@ function App(props) {
     getAuthStatus();
   }); 
 
-  async function handleLogout() {
-      // await Auth.signOut();
+  // async function handleLogout() {
+  //     // await Auth.signOut();
       
-      Auth.signOut().then(()=>
-      window.location.reload(false));
+  //     Auth.signOut().then(()=>
+  //     window.location.reload(false));
       
-      setAuthenticated(false);
-      props.history.push("/login"); 
-  }
+  //     setAuthenticated(false);
+  //     props.history.push("/login"); 
+  // }
 
 
 
