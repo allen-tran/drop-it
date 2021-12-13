@@ -9,7 +9,7 @@ This application is a mock Google Drive that enables the client to create an acc
 - Backend: Node.js, AWS S3, AWS RDS (MySQL)
 
 ## Getting Started 🕹
-1. Clone the repository 
+1. Clone the repository 👯‍♂️
 ```
 $ git clone https://github.com/allen-tran/Drop-It
 ```
