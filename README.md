@@ -2,11 +2,11 @@
 *This application is a mock Google Drive that enables the client to create an account, sign in, and drop their files as needed. Users can upload, open, update, and remove their files.*
 
 ## <p align="center">Tech Stack 💼</p>
-- Written in: JavaScript
-- Authentification: AWS Cognito, AWS Amplify
-- Frontend: React.js, Reactstap, CSS
-- Backend: Node.js, AWS S3, AWS RDS (MySQL)
-- Routing + Misc: React-Router-Dom, Express.js, CORS, Body-Parser
+- **Written in:** JavaScript
+- **Authentification:** AWS Cognito, AWS Amplify
+- **Frontend:** React.js, Reactstap, CSS
+- **Backend:** Node.js, AWS S3, AWS RDS (MySQL)
+- **Routing + Misc:** React-Router-Dom, Express.js, CORS, Body-Parser
 
 ##  <p align="center">Database Schema 🗺</p>
 ### **Files Table**
