@@ -2,10 +2,10 @@
 *This application is a mock Google Drive that enables the client to create an account, sign in, and drop their files as needed. Users can upload, open, update, and remove their files.*
 
 ## <p align="center">Table of Contents</p>
-1. [Tech Stack](TechStack)
-2. [Database Schema](DatabaseSchema)
-3. [Getting Started]()
-4. [Visuals]()
+1. [Tech Stack](#tech-stack-)
+2. [Database Schema](#database-schema-)
+3. [Getting Started](#getting-started-)
+4. [Visuals](#visuals-)
 
 ## <p align="center">Tech Stack 💼</p>
 - **Written in:** JavaScript
