@@ -1,18 +1,23 @@
 #  <p align="center">drop it! - Fun and Simple File Storage 🗳</p>
 *This application is a mock Google Drive that enables the client to create an account, sign in, and drop their files as needed. Users can upload, open, update, and remove their files.*
 
-## <p align="center">Table of Contents</p>
+## <p align="center">Table of Contents 🗞️</p>
 1. [Tech Stack](#tech-stack-)
 2. [Database Schema](#database-schema-)
 3. [Getting Started](#getting-started-)
 4. [Visuals](#visuals-)
 
 ## <p align="center">Tech Stack 💼</p>
-- **Written in:** JavaScript
-- **Authentification:** AWS Cognito, AWS Amplify
-- **Frontend:** React.js, Reactstap, CSS
-- **Backend:** Node.js, AWS S3, AWS RDS (MySQL)
-- **Routing + Misc:** React-Router-Dom, Express.js, CORS, Body-Parser
+- **Written in:** 
+    - [X] JavaScript
+- **Authentification:** 
+    - [X] AWS Cognito, AWS Amplify
+- **Frontend:** 
+    - [X] React.js, Reactstap
+- **Backend:** 
+    - [X] Node.js, AWS S3, AWS RDS (MySQL)
+- **Routing + Misc:** 
+    - [X] React-Router-Dom, Express.js, CORS, Body-Parser
 
 ##  <p align="center">Database Schema 🗺</p>
 ### **Files Table**
