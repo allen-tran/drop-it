@@ -48,18 +48,18 @@
 ```
 $ git clone https://github.com/allen-tran/Drop-It
 ```
-3. Install the Dependencies 📥
+2. Install the Dependencies 📥
 ```
 $ cd app
 $ npm i
 ```
-4. Configure the Database 📦
+3. Configure the Database 📦
 * navigate to config folder
 * copy example.config.json into folder
 * replace `X` with database details (only admin is able to do so)
 
 
-5. Run the Server and Client 🏃‍♂️
+4. Run the Server and Client 🏃‍♂️
 ```
 $ cd app
 $ npm start
