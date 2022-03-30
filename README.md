@@ -1,4 +1,5 @@
-#  drop it! 🗳
+#  Drop It! 🗳
+## About 🔭
 Fun and simple file storage :) This application is a mock Google Drive that enables the client to create an account, sign in, and drop their files as needed. Users can upload, open, update, and remove their files.
 
 ## Table of Contents 🗞️
