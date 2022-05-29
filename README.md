@@ -1,6 +1,9 @@
 #  Drop It! 🗳
-## About 🔭
-Fun and simple file storage :) This application is a mock Google Drive that enables the client to create an account, sign in, and drop their files as needed. Users can upload, open, update, and remove their files.
+
+![imageedit_2_4621812953](https://user-images.githubusercontent.com/63386979/170892825-e1c906ff-37ec-4ffd-b427-0ec675dae8d1.jpg)
+
+
+Fun and simple file storage :) This application is a mock Google Drive that enables the client to create an account, sign in, and drop their files as needed and attach an option caption to each one. Users can perform CRUD operations with uploading, opening, updating, and removing their files. The app's storage leverages Amazon's S3 solution.
 
 ## Table of Contents 🗞️
 1. [Tech Stack](#tech-stack-)
