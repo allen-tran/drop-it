@@ -1,4 +1,4 @@
-#  Drop It! 🗳
+#  Drop It 🗳
 
 ![imageedit_2_4621812953](https://user-images.githubusercontent.com/63386979/170892825-e1c906ff-37ec-4ffd-b427-0ec675dae8d1.jpg)
 
