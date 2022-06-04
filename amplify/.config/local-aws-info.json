@@ -1,0 +1,7 @@
+{
+  "dev": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "/Users/allentran/.amplify/awscloudformation/AF1qN0LmN2"
+  }
+}
