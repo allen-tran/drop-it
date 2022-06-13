@@ -1,4 +1,5 @@
 node_modules
+amplify
 src/config/config.json
 src/aws-exports.js
 .DS_STORE

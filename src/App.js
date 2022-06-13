@@ -18,27 +18,15 @@ function App(props) {
       setAuthenticated(true);
     }
     catch (e) {
-      // if (e !== "no current user") {
-      //   alert(e);
-      // }
+      if (e !== "no current user") {
+      }
     }
-    setIsAuthenticating(false);
+    // setAuthenticated(false);
+    setIsAuthenticating(false)
   }
   useEffect(() => {
     getAuthStatus();
-  }); 
-
-  // async function handleLogout() {
-  //     // await Auth.signOut();
-      
-  //     Auth.signOut().then(()=>
-  //     window.location.reload(false));
-      
-  //     setAuthenticated(false);
-  //     props.history.push("/login"); 
-  // }
-
-
+  },[]); 
 
   return (
     !isAuthenticating &&
