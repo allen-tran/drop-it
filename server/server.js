@@ -13,7 +13,7 @@ var pool = mysql.createPool({
   host: Config.HOST, // ip address of server running mysql
   user: Config.USER, // user name to your mysql database
   password: Config.PASSWORD, // corresponding password
-  port: Config.PORT, // db port
+  port: Config.PORT, // QU port
   database: Config.DATABASE, // use the specified database
 });
 
