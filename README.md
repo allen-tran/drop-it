@@ -32,7 +32,9 @@ After successful account creation, users will then be asked to sign in - they ha
 
 ### Home View (View Files View)
 
-- *in progress*
+<img width="1512" alt=" 2022-06-12 at 8 32 22 PM" src="https://user-images.githubusercontent.com/63386979/173264157-9f3f23ec-3404-4fde-b13a-5b5b34bae670.png">
+
+After being authenticated, you will be directed to the home screen where you can view all of your uploaded files. From here, you can download, edit, and/or delete your files to how you want it!
 
 ### Drop File View
 
